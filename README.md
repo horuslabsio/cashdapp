@@ -1,4 +1,4 @@
-# CashD App
+# Cash Dapp
 
 A React Native mobile application built with Expo that provides a Cash App-inspired interface with Solana blockchain integration for balance tracking and on-chain payments.
 
@@ -107,7 +107,7 @@ const SOLANA_ADDRESS = "YOUR_WALLET_ADDRESS";
 App configuration is in `app.json`:
 - Package name: `com.cashdapp.mobile`
 - iOS bundle identifier: `com.cashdapp.mobile`
-- App name: `CashD App`
+- App name: `Cash Dapp`
 
 ## Dependencies
 
