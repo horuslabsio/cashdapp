@@ -1,16 +1,21 @@
 {
   "expo": {
-    "name": "cashdapp",
+    "name": "CashD App",
     "slug": "cashdapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "cashdapp",
     "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.cashdapp.mobile",
+      "buildNumber": "1"
     },
     "android": {
+      "package": "com.cashdapp.mobile",
+      "versionCode": 1,
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -39,6 +44,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "265622ff-02c2-412c-8956-c20b28114720"
+      }
+    },
+    "owner": "goodyboys-team"
   }
 }

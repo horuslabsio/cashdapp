@@ -1,56 +1,138 @@
-# Welcome to your Expo app 👋
+# CashD App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native mobile application built with Expo that provides a Cash App-inspired interface with Solana blockchain integration for balance tracking and on-chain payments.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Cash Balance Display** - View your USDC balance with real-time USD value
+- **Solana Integration** - Connect to Solana blockchain to fetch wallet balances
+- **Add Cash Flow** - Interactive drawer for adding funds via ChainRails payment integration
+- **Feature Tiles** - Visual placeholders for Savings, Bitcoin, Stocks, and Tax Filing
+- **Tab Navigation** - Bottom tab bar with Home, Activity, Card, Money, and Search screens
+- **Modern UI** - Glass effects, smooth animations, and Cash App-inspired design
 
-   ```bash
-   npm install
-   ```
+## Tech Stack
 
-2. Start the app
+- **Framework**: Expo SDK 56 with Expo Router for file-based routing
+- **Language**: TypeScript
+- **UI**: React Native with react-native-reanimated for animations
+- **Blockchain**: Solana Web3.js for on-chain interactions
+- **Payments**: ChainRails SDK for payment processing
+- **Styling**: StyleSheet with custom theming
 
-   ```bash
-   npx expo start
-   ```
+## Project Structure
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+src/
+├── app/                    # Expo Router pages
+│   ├── (tabs)/            # Tab-based navigation
+│   │   ├── index.tsx      # Home screen
+│   │   ├── activity.tsx   # Activity screen
+│   │   ├── card.tsx       # Card screen
+│   │   ├── money.tsx      # Money screen
+│   │   └── search.tsx     # Search screen
+│   └── _layout.tsx        # Root layout
+├── components/
+│   ├── home/              # Home screen components
+│   │   ├── AddCashDrawer.tsx
+│   │   ├── BitcoinChart.tsx
+│   │   ├── CashBalanceCard.tsx
+│   │   ├── FeatureTile.tsx
+│   │   ├── HomeHeader.tsx
+│   │   ├── SavingsIcon.tsx
+│   │   ├── StocksChart.tsx
+│   │   └── TaxIllustration.tsx
+│   ├── CustomTabBar.tsx   # Custom bottom tab bar
+│   └── TabIcon.tsx        # Tab icon component
+└── hooks/
+    └── useSolanaBalance.ts  # Solana balance fetching hook
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Getting Started
 
-### Other setup steps
+### Prerequisites
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+- Node.js 18+
+- npm or bun
+- Expo CLI
+- Android Studio (for Android development)
+- Xcode (for iOS development)
 
-## Learn more
+### Installation
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+# Install dependencies
+npm install
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+# Or with bun
+bun install
+```
 
-## Join the community
+### Running the App
 
-Join our community of developers creating universal apps.
+```bash
+# Start the development server
+npm start
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+# Run on Android
+npm run android
+
+# Run on iOS
+npm run ios
+
+# Run on web
+npm run web
+```
+
+### Environment Variables
+
+The app uses the following default configurations:
+
+- **Solana RPC**: Public nodes (no API key required)
+- **Price API**: CoinGecko for SOL/USD pricing
+- **Wallet Address**: Configurable in `src/hooks/useSolanaBalance.ts`
+
+## Configuration
+
+### Wallet Address
+
+To change the tracked wallet address, edit `src/hooks/useSolanaBalance.ts`:
+
+```typescript
+const SOLANA_ADDRESS = "YOUR_WALLET_ADDRESS";
+```
+
+### App Metadata
+
+App configuration is in `app.json`:
+- Package name: `com.cashdapp.mobile`
+- iOS bundle identifier: `com.cashdapp.mobile`
+- App name: `CashD App`
+
+## Dependencies
+
+### Core
+- `expo` ~56.0.12
+- `react` 19.2.3
+- `react-native` 0.85.3
+
+### Navigation
+- `expo-router` ~56.2.11
+- `react-native-screens` 4.25.2
+- `react-native-safe-area-context` ~5.7.0
+
+### UI & Animation
+- `expo-glass-effect` ~56.0.4
+- `expo-image` ~56.0.11
+- `expo-symbols` ~56.0.6
+- `react-native-reanimated` 4.3.1
+- `react-native-gesture-handler` ~2.31.1
+- `react-native-svg` 15.15.4
+
+### Blockchain
+- `@solana/web3.js` ^1.98.4
+- `@chainrails/react-native` ^0.0.22
+
+## License
+
+MIT License - see LICENSE file for details.
