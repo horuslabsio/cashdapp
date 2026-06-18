@@ -3,10 +3,9 @@ import { StyleSheet, View } from "react-native";
 
 import {
   CardIcon,
-  HistoryIcon,
   PayIcon,
   SaveIcon,
-  SearchIcon,
+  TrendingIcon,
 } from "../../components/TabIcon";
 import { CustomTabBar } from "../../components/CustomTabBar";
 
@@ -14,8 +13,7 @@ const TABS = [
   { name: "index", href: "/", Icon: SaveIcon },
   { name: "card", href: "/card", Icon: CardIcon },
   { name: "money", href: "/money", Icon: PayIcon },
-  { name: "search", href: "/search", Icon: SearchIcon },
-  { name: "activity", href: "/activity", Icon: HistoryIcon },
+  { name: "search", href: "/search", Icon: TrendingIcon },
 ] as const;
 
 export default function TabsLayout() {

@@ -1,23 +1,43 @@
-# Cash Dapp
+# Cash Dapp - ChainRails Demo
 
-A React Native mobile application built with Expo that provides a Cash App-inspired interface with Solana blockchain integration for balance tracking and on-chain payments.
+A React Native mobile application built with Expo that showcases ChainRails payment integration through multiple demo interfaces.
 
-## Features
+## Demos
 
-- **Cash Balance Display** - View your USDC balance with real-time USD value
-- **Solana Integration** - Connect to Solana blockchain to fetch wallet balances
-- **Add Cash Flow** - Interactive drawer for adding funds via ChainRails payment integration
-- **Feature Tiles** - Visual placeholders for Savings, Bitcoin, Stocks, and Tax Filing
-- **Tab Navigation** - Bottom tab bar with Home, Activity, Card, Money, and Search screens
-- **Modern UI** - Glass effects, smooth animations, and Cash App-inspired design
+The app features four different payment demo pages:
+
+### 1. Home (Money)
+- Cash App-inspired balance display
+- Fund/Withdraw buttons that open ChainRails payment modal directly
+- Real-time balance formatting
+
+### 2. Gaming
+- Game purchase interface with customizable recipient details
+- Interactive drawer for customizing:
+  - Destination address
+  - Chain selection (Solana, Ethereum, Polygon, Arbitrum, Optimism, Base)
+  - Amount
+- Blue gaming-themed accent color (#87afcd)
+
+### 3. Money (Fintech)
+- Fintech-style dashboard with balance card
+- Fund/Withdraw buttons opening ChainRails modal directly
+- Light theme with green accent (#01D651)
+
+### 4. Predict (Prediction Market)
+- Sports prediction market interface
+- YES/NO voting with real-time percentage display
+- Opens ChainRails modal directly with:
+  - Green accent (#009865) for YES votes
+  - Red accent (#EC0040) for NO votes
+- Dark theme
 
 ## Tech Stack
 
-- **Framework**: Expo SDK 56 with Expo Router for file-based routing
+- **Framework**: Expo SDK 56 with Expo Router
 - **Language**: TypeScript
-- **UI**: React Native with react-native-reanimated for animations
-- **Blockchain**: Solana Web3.js for on-chain interactions
-- **Payments**: ChainRails SDK for payment processing
+- **UI**: React Native with react-native-reanimated
+- **Payments**: ChainRails SDK (@chainrails/react-native)
 - **Styling**: StyleSheet with custom theming
 
 ## Project Structure
@@ -27,10 +47,9 @@ src/
 ├── app/                    # Expo Router pages
 │   ├── (tabs)/            # Tab-based navigation
 │   │   ├── index.tsx      # Home screen
-│   │   ├── activity.tsx   # Activity screen
-│   │   ├── card.tsx       # Card screen
-│   │   ├── money.tsx      # Money screen
-│   │   └── search.tsx     # Search screen
+│   │   ├── card.tsx       # Gaming demo
+│   │   ├── money.tsx      # Fintech demo
+│   │   └── search.tsx     # Prediction market demo
 │   └── _layout.tsx        # Root layout
 ├── components/
 │   ├── home/              # Home screen components
@@ -39,13 +58,14 @@ src/
 │   │   ├── CashBalanceCard.tsx
 │   │   ├── FeatureTile.tsx
 │   │   ├── HomeHeader.tsx
-│   │   ├── SavingsIcon.tsx
-│   │   ├── StocksChart.tsx
-│   │   └── TaxIllustration.tsx
+│   │   └── ...
+│   ├── demos/             # Demo components
+│   │   ├── CustomizeRecipientDrawer.tsx
+│   │   └── PaymentDrawer.tsx
 │   ├── CustomTabBar.tsx   # Custom bottom tab bar
-│   └── TabIcon.tsx        # Tab icon component
+│   └── TabIcon.tsx        # Tab icons
 └── hooks/
-    └── useSolanaBalance.ts  # Solana balance fetching hook
+    └── useSolanaBalance.ts
 ```
 
 ## Getting Started
@@ -55,8 +75,8 @@ src/
 - Node.js 18+
 - npm or bun
 - Expo CLI
-- Android Studio (for Android development)
-- Xcode (for iOS development)
+- Android Studio (for Android)
+- Xcode (for iOS)
 
 ### Installation
 
@@ -84,30 +104,27 @@ npm run ios
 npm run web
 ```
 
-### Environment Variables
+## ChainRails Integration
 
-The app uses the following default configurations:
+The app demonstrates two payment flows:
 
-- **Solana RPC**: Public nodes (no API key required)
-- **Price API**: CoinGecko for SOL/USD pricing
-- **Wallet Address**: Configurable in `src/hooks/useSolanaBalance.ts`
+1. **Direct Modal** - Opens ChainRails payment modal immediately (Home, Money, Predict pages)
+2. **Customization Drawer** - Shows a drawer first with recipient customization options before opening the modal (Gaming page)
 
-## Configuration
+### Payment Session API
 
-### Wallet Address
-
-To change the tracked wallet address, edit `src/hooks/useSolanaBalance.ts`:
+The app uses a demo server to create payment sessions:
 
 ```typescript
-const SOLANA_ADDRESS = "YOUR_WALLET_ADDRESS";
+const res = await fetch(
+  `https://chainrails-sdk-server-nu.vercel.app/session?amount=${amount}&destinationChain=${chain}&recipient=${recipient}&token=USDC`,
+);
+const data = await res.json();
+cr.updateSession({
+  sessionToken: data.sessionToken,
+  amount: data.amount,
+});
 ```
-
-### App Metadata
-
-App configuration is in `app.json`:
-- Package name: `com.nova.mobile`
-- iOS bundle identifier: `com.nova.mobile`
-- App name: `Nova`
 
 ## Dependencies
 
@@ -129,9 +146,16 @@ App configuration is in `app.json`:
 - `react-native-gesture-handler` ~2.31.1
 - `react-native-svg` 15.15.4
 
-### Blockchain
+### Blockchain & Payments
 - `@solana/web3.js` ^1.98.4
 - `@chainrails/react-native` ^0.0.22
+
+## App Configuration
+
+App configuration is in `app.json`:
+- Package name: `com.nova.mobile`
+- iOS bundle identifier: `com.nova.mobile`
+- App name: `Nova`
 
 ## License
 
