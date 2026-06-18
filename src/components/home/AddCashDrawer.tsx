@@ -313,7 +313,7 @@ export function AddCashDrawer({ visible, onClose, onSuccess }: Props) {
           client={{
             logoUrl:
               "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Square_Cash_app_logo.svg/250px-Square_Cash_app_logo.svg.png",
-            name: "CashDapp",
+            name: "Nova",
             paymasterEnabled: false,
           }}
         />

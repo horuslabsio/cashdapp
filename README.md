@@ -105,9 +105,9 @@ const SOLANA_ADDRESS = "YOUR_WALLET_ADDRESS";
 ### App Metadata
 
 App configuration is in `app.json`:
-- Package name: `com.cashdapp.mobile`
-- iOS bundle identifier: `com.cashdapp.mobile`
-- App name: `Cash Dapp`
+- Package name: `com.nova.mobile`
+- iOS bundle identifier: `com.nova.mobile`
+- App name: `Nova`
 
 ## Dependencies
 
