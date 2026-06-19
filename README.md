@@ -1,4 +1,4 @@
-# Cash Dapp - ChainRails Demo
+# Chainrails Playground - ChainRails Demo
 
 A React Native mobile application built with Expo that showcases ChainRails payment integration through multiple demo interfaces.
 
@@ -6,31 +6,35 @@ A React Native mobile application built with Expo that showcases ChainRails paym
 
 The app features four different payment demo pages:
 
-### 1. Home (Money)
-- Cash App-inspired balance display
-- Fund/Withdraw buttons that open ChainRails payment modal directly
-- Real-time balance formatting
+### 1. Home
+- ChainRails introduction with use case cards
+- Interactive navigation to demo pages
+- 4-step walkthrough explaining how the demo works
+- "Get Started" CTA section
 
-### 2. Gaming
+### 2. Fintech
+- Fintech-style dashboard with balance card
+- Fund/Withdraw buttons opening ChainRails modal directly
+- Light theme with green accent (#01D651)
+- **Default chain: Solana**
+
+### 3. Gaming
 - Game purchase interface with customizable recipient details
 - Interactive drawer for customizing:
   - Destination address
   - Chain selection (Solana, Ethereum, Polygon, Arbitrum, Optimism, Base)
   - Amount
 - Blue gaming-themed accent color (#87afcd)
+- **Default chain: Solana**
 
-### 3. Money (Fintech)
-- Fintech-style dashboard with balance card
-- Fund/Withdraw buttons opening ChainRails modal directly
-- Light theme with green accent (#01D651)
-
-### 4. Predict (Prediction Market)
+### 4. Prediction Market
 - Sports prediction market interface
 - YES/NO voting with real-time percentage display
 - Opens ChainRails modal directly with:
   - Green accent (#009865) for YES votes
   - Red accent (#EC0040) for NO votes
 - Dark theme
+- **Default chain: Solana**
 
 ## Tech Stack
 
@@ -47,8 +51,8 @@ src/
 ├── app/                    # Expo Router pages
 │   ├── (tabs)/            # Tab-based navigation
 │   │   ├── index.tsx      # Home screen
-│   │   ├── card.tsx       # Gaming demo
 │   │   ├── money.tsx      # Fintech demo
+│   │   ├── card.tsx       # Gaming demo
 │   │   └── search.tsx     # Prediction market demo
 │   └── _layout.tsx        # Root layout
 ├── components/
@@ -108,7 +112,7 @@ npm run web
 
 The app demonstrates two payment flows:
 
-1. **Direct Modal** - Opens ChainRails payment modal immediately (Home, Money, Predict pages)
+1. **Direct Modal** - Opens ChainRails payment modal immediately (Home, Fintech, Prediction pages)
 2. **Customization Drawer** - Shows a drawer first with recipient customization options before opening the modal (Gaming page)
 
 ### Payment Session API
@@ -125,6 +129,10 @@ cr.updateSession({
   amount: data.amount,
 });
 ```
+
+## Default Chain
+
+All demos default to **Solana** for the destination chain, targeting Solana users specifically.
 
 ## Dependencies
 
@@ -155,7 +163,7 @@ cr.updateSession({
 App configuration is in `app.json`:
 - Package name: `com.nova.mobile`
 - iOS bundle identifier: `com.nova.mobile`
-- App name: `Nova`
+- App name: `Chainrails Playground`
 
 ## License
 

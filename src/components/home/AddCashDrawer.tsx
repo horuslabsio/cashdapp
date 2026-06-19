@@ -1,12 +1,7 @@
 import * as React from "react";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from "react-native-reanimated";
+import Animated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
 import { scheduleOnRN } from "react-native-worklets";
@@ -49,9 +44,7 @@ function formatAmount(raw: string): string {
   if (whole === "" && raw.includes(".")) return "$0.";
   // Add thousands separators to the whole part.
   const wholeNum = Number(whole ?? 0);
-  const wholeFmt = Number.isFinite(wholeNum)
-    ? wholeNum.toLocaleString("en-US")
-    : (whole ?? "");
+  const wholeFmt = Number.isFinite(wholeNum) ? wholeNum.toLocaleString("en-US") : (whole ?? "");
   const fracPart = frac.length > 0 ? `.${frac.slice(0, 2)}` : "";
   return `$${wholeFmt}${fracPart}`;
 }
@@ -272,12 +265,7 @@ export function AddCashDrawer({ visible, onClose, onSuccess }: Props) {
             // the keypad catches all touches and drag-down-to-dismiss
             // would interfere with it, so we skip GestureDetector there.
             <GestureDetector gesture={pan}>
-              <View
-                style={[
-                  styles.sheetInner,
-                  mode === "quick" && { flex: undefined },
-                ]}
-              >
+              <View style={[styles.sheetInner, mode === "quick" && { flex: undefined }]}>
                 <QuickView
                   selected={selected}
                   onPickAmount={handleQuickAmountPress}
@@ -313,7 +301,7 @@ export function AddCashDrawer({ visible, onClose, onSuccess }: Props) {
           client={{
             logoUrl:
               "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Square_Cash_app_logo.svg/250px-Square_Cash_app_logo.svg.png",
-            name: "Nova",
+            name: "Chainrails Playground",
             paymasterEnabled: false,
           }}
         />
@@ -350,9 +338,7 @@ function QuickView({
               key={amount}
               onPress={() => onPickAmount(amount)}
               accessibilityRole="button"
-              accessibilityLabel={
-                amount === CUSTOM_KEY ? "Enter custom amount" : `Add ${amount}`
-              }
+              accessibilityLabel={amount === CUSTOM_KEY ? "Enter custom amount" : `Add ${amount}`}
               accessibilityState={{ selected: isActive }}
               style={({ pressed }) => [
                 styles.amountPill,
@@ -360,11 +346,7 @@ function QuickView({
                 pressed && !isActive && styles.amountPillPressed,
               ]}
             >
-              <Text
-                style={[styles.amountText, isActive && styles.amountTextActive]}
-              >
-                {amount}
-              </Text>
+              <Text style={[styles.amountText, isActive && styles.amountTextActive]}>{amount}</Text>
             </Pressable>
           );
         })}
@@ -377,10 +359,7 @@ function QuickView({
           // Placeholder: wire up to the deposit flow once it exists.
           onAdd();
         }}
-        style={({ pressed }) => [
-          styles.addButton,
-          pressed && styles.addButtonPressed,
-        ]}
+        style={({ pressed }) => [styles.addButton, pressed && styles.addButtonPressed]}
       >
         <Text style={styles.addButtonText}>Add</Text>
       </Pressable>
@@ -465,13 +444,7 @@ function CustomAmountView({
  * One horizontal row of three keypad buttons. The middle column carries the
  * visual weight; first/third columns are symmetric.
  */
-function KeypadRow({
-  keys,
-  onKey,
-}: {
-  keys: [string, string, string];
-  onKey: (key: string) => void;
-}) {
+function KeypadRow({ keys, onKey }: { keys: [string, string, string]; onKey: (key: string) => void }) {
   return (
     <View style={styles.keypadRow}>
       {keys.map((key) => (
@@ -481,26 +454,16 @@ function KeypadRow({
   );
 }
 
-function KeypadButton({
-  value,
-  onKey,
-}: {
-  value: string;
-  onKey: (key: string) => void;
-}) {
+function KeypadButton({ value, onKey }: { value: string; onKey: (key: string) => void }) {
   const label = value === "back" ? "⌫" : value === "." ? "." : value;
-  const accessibilityLabel =
-    value === "back" ? "Delete" : value === "." ? "Decimal point" : value;
+  const accessibilityLabel = value === "back" ? "Delete" : value === "." ? "Decimal point" : value;
 
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
       onPress={() => onKey(value)}
-      style={({ pressed }) => [
-        styles.keypadButton,
-        pressed && styles.keypadButtonPressed,
-      ]}
+      style={({ pressed }) => [styles.keypadButton, pressed && styles.keypadButtonPressed]}
     >
       <Text style={styles.keypadButtonText}>{label}</Text>
     </Pressable>
@@ -511,23 +474,12 @@ function KeypadButton({
  * Simple "X" close icon. Stroked (not filled) so it sits at the same
  * visual weight as the rest of the green UI affordances.
  */
-function CloseIcon({
-  color = ACCENT_GREEN,
-  size = 22,
-}: {
-  color?: string;
-  size?: number;
-}) {
+function CloseIcon({ color = ACCENT_GREEN, size = 22 }: { color?: string; size?: number }) {
   // Stroke width scaled to the icon size so it looks consistent at 22px.
   const stroke = Math.max(2, size * 0.14);
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <Path
-        d="M6 6 L18 18 M18 6 L6 18"
-        stroke={color}
-        strokeWidth={stroke}
-        strokeLinecap="round"
-      />
+      <Path d="M6 6 L18 18 M18 6 L6 18" stroke={color} strokeWidth={stroke} strokeLinecap="round" />
     </Svg>
   );
 }

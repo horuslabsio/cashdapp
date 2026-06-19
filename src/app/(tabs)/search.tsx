@@ -16,7 +16,7 @@ export default function SearchScreen() {
   const insets = useSafeAreaInsets();
   const [voteType, setVoteType] = React.useState<"yes" | "no" | null>(null);
   const [amount] = React.useState(10.0);
-  const destinationAddress = "0xb25aa807118aa401896826147a6ecdaae91f2f90";
+  const destinationAddress = "EAH7s1eBfr1gXoyZpgBfUfBg6yn42ZTK7onqBUEnj6fZ";
 
   const yesPercentage = 42;
   const noPercentage = 58;
@@ -39,7 +39,7 @@ export default function SearchScreen() {
     cr.open();
     try {
       const res = await fetch(
-        `https://chainrails-sdk-server-nu.vercel.app/session?amount=${1.49}&destinationChain=ETHEREUM&recipient=${destinationAddress}&token=USDC`,
+        `https://chainrails-sdk-server-nu.vercel.app/session?amount=${1.49}&destinationChain=SOLANA&recipient=${destinationAddress}&token=USDC`,
       );
       const data = await res.json();
       cr.updateSession({
@@ -55,25 +55,12 @@ export default function SearchScreen() {
     <View style={[styles.container, { paddingTop: insets.top + 8 }]}>
       <View style={styles.header}>
         <Text style={styles.title}>Predict</Text>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel="Open profile"
-          hitSlop={8}
-          style={styles.avatarTouch}
-        >
-          <Image
-            source={AVATAR_URI}
-            style={styles.avatar}
-            contentFit="cover"
-            transition={150}
-          />
+        <Pressable accessibilityRole="button" accessibilityLabel="Open profile" hitSlop={8} style={styles.avatarTouch}>
+          <Image source={AVATAR_URI} style={styles.avatar} contentFit="cover" transition={150} />
         </Pressable>
       </View>
 
-      <ScrollView
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         {/* Prediction Card */}
         <View style={styles.predictionCard}>
           <View style={styles.matchInfo}>
@@ -81,9 +68,7 @@ export default function SearchScreen() {
               <Text style={styles.teamEmoji}>⚽</Text>
             </View>
             <View style={styles.matchText}>
-              <Text style={styles.matchTitle}>
-                Will Bayern win a corner in the next 3 minutes?
-              </Text>
+              <Text style={styles.matchTitle}>Will Bayern win a corner in the next 3 minutes?</Text>
             </View>
           </View>
 
@@ -102,30 +87,20 @@ export default function SearchScreen() {
           {/* Progress Bar */}
           <View style={styles.progressBarContainer}>
             <View style={styles.progressBar}>
-              <View
-                style={[styles.progressYes, { width: `${yesPercentage}%` }]}
-              />
+              <View style={[styles.progressYes, { width: `${yesPercentage}%` }]} />
             </View>
           </View>
 
           {/* Vote Buttons */}
           <View style={styles.voteButtons}>
             <Pressable
-              style={({ pressed }) => [
-                styles.voteButton,
-                styles.voteYesButton,
-                pressed && styles.buttonPressed,
-              ]}
+              style={({ pressed }) => [styles.voteButton, styles.voteYesButton, pressed && styles.buttonPressed]}
               onPress={() => handleVote("yes")}
             >
               <Text style={styles.voteButtonText}>Vote YES</Text>
             </Pressable>
             <Pressable
-              style={({ pressed }) => [
-                styles.voteButton,
-                styles.voteNoButton,
-                pressed && styles.buttonPressed,
-              ]}
+              style={({ pressed }) => [styles.voteButton, styles.voteNoButton, pressed && styles.buttonPressed]}
               onPress={() => handleVote("no")}
             >
               <Text style={styles.voteNoButtonText}>Vote NO</Text>
@@ -137,9 +112,8 @@ export default function SearchScreen() {
         <View style={styles.infoCard}>
           <Text style={styles.infoTitle}>Prediction Market Demo</Text>
           <Text style={styles.infoText}>
-            This demo showcases a prediction market payment interface with
-            ChainRails integration. Users can place bets on sports events and
-            other outcomes.
+            This demo showcases a prediction market payment interface with ChainRails integration. Users can place bets on sports
+            events and other outcomes.
           </Text>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Current Amount:</Text>

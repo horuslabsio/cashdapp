@@ -14,11 +14,9 @@ const AVATAR_URI = "https://i.pravatar.cc/160?img=12";
  */
 export default function MoneyScreen() {
   const insets = useSafeAreaInsets();
-  const [actionType, setActionType] = React.useState<
-    "fund" | "withdraw" | null
-  >(null);
+  const [actionType, setActionType] = React.useState<"fund" | "withdraw" | null>(null);
   const [amount, setAmount] = React.useState(2425.68);
-  const destinationAddress = "0xb25aa807118aa401896826147a6ecdaae91f2f90";
+  const destinationAddress = "EAH7s1eBfr1gXoyZpgBfUfBg6yn42ZTK7onqBUEnj6fZ";
 
   const formattedAmount = amount.toLocaleString("en-US", {
     minimumFractionDigits: 2,
@@ -47,7 +45,7 @@ export default function MoneyScreen() {
     cr.open();
     try {
       const res = await fetch(
-        `https://chainrails-sdk-server-nu.vercel.app/session?amount=${1}&destinationChain=ETHEREUM&recipient=${destinationAddress}&token=USDC`,
+        `https://chainrails-sdk-server-nu.vercel.app/session?amount=${1}&destinationChain=SOLANA&recipient=${destinationAddress}&token=USDC`,
       );
       const data = await res.json();
       cr.updateSession({
@@ -62,26 +60,13 @@ export default function MoneyScreen() {
   return (
     <View style={[styles.container, { paddingTop: insets.top + 8 }]}>
       <View style={styles.header}>
-        <Text style={styles.title}>Money</Text>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel="Open profile"
-          hitSlop={8}
-          style={styles.avatarTouch}
-        >
-          <Image
-            source={AVATAR_URI}
-            style={styles.avatar}
-            contentFit="cover"
-            transition={150}
-          />
+        <Text style={styles.title}>Fintech</Text>
+        <Pressable accessibilityRole="button" accessibilityLabel="Open profile" hitSlop={8} style={styles.avatarTouch}>
+          <Image source={AVATAR_URI} style={styles.avatar} contentFit="cover" transition={150} />
         </Pressable>
       </View>
 
-      <ScrollView
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         {/* Balance Card */}
         <View style={styles.balanceCard}>
           <Text style={styles.balanceLabel}>Balance</Text>
@@ -99,22 +84,12 @@ export default function MoneyScreen() {
           {/* Action Buttons */}
           <View style={styles.buttonRow}>
             <Pressable
-              style={({ pressed }) => [
-                styles.actionButton,
-                styles.fundButton,
-                pressed && styles.buttonPressed,
-              ]}
+              style={({ pressed }) => [styles.actionButton, styles.fundButton, pressed && styles.buttonPressed]}
               onPress={() => handleAction("fund")}
             >
               <Text style={styles.fundButtonText}>+ Fund</Text>
             </Pressable>
-            <Pressable
-              style={({ pressed }) => [
-                styles.actionButton,
-                styles.withdrawButton,
-                pressed && styles.buttonPressed,
-              ]}
-            >
+            <Pressable style={({ pressed }) => [styles.actionButton, styles.withdrawButton, pressed && styles.buttonPressed]}>
               <Text style={styles.withdrawButtonText}>- Withdraw</Text>
             </Pressable>
           </View>
@@ -124,9 +99,8 @@ export default function MoneyScreen() {
         <View style={styles.infoCard}>
           <Text style={styles.infoTitle}>Fintech Demo</Text>
           <Text style={styles.infoText}>
-            This demo showcases a fintech-style payment interface with
-            ChainRails integration. Tap "Fund" or "Withdraw" to open the payment
-            modal directly.
+            This demo showcases a fintech-style payment interface with ChainRails integration. Tap "Fund" or "Withdraw" to open
+            the payment modal directly.
           </Text>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Current Amount:</Text>
@@ -256,7 +230,7 @@ const styles = StyleSheet.create({
   },
   actionButton: {
     flex: 1,
-    height: 32,
+    height: 42,
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",

@@ -11,8 +11,8 @@ import { CustomTabBar } from "../../components/CustomTabBar";
 
 const TABS = [
   { name: "index", href: "/", Icon: SaveIcon },
-  { name: "card", href: "/card", Icon: CardIcon },
   { name: "money", href: "/money", Icon: PayIcon },
+  { name: "card", href: "/card", Icon: CardIcon },
   { name: "search", href: "/search", Icon: TrendingIcon },
 ] as const;
 

@@ -47,6 +47,7 @@ type Props = {
   title?: string;
   accentColor?: string;
   theme?: string;
+  css?: string;
 };
 
 function Chevron({ color = "#000" }: { color?: string }) {
@@ -69,10 +70,11 @@ export function CustomizeRecipientDrawer({
   onSuccess,
   initialAmount = 1.0,
   initialAddress = "0xb25aa807118aa401896826147a6ecdaae91f2f90",
-  initialChain = "ETHEREUM",
+  initialChain = "SOLANA",
   title = "Customize Recipient",
   accentColor = "#01D651",
   theme = "light",
+  css,
 }: Props) {
   const insets = useSafeAreaInsets();
   const translateY = useSharedValue(HIDDEN_OFFSET);
@@ -312,6 +314,7 @@ export function CustomizeRecipientDrawer({
             accentColor,
             theme: theme,
           }}
+          css={css}
         />
       </View>
     </Modal>
