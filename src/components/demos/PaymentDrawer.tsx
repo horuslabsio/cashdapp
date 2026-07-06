@@ -217,7 +217,6 @@ export function PaymentDrawer({
         <PaymentModal
           {...cr}
           styles={{
-            accentColor,
             theme,
           }}
         />

@@ -7,7 +7,7 @@ import {
   SaveIcon,
   TrendingIcon,
 } from "../../components/TabIcon";
-import { CustomTabBar } from "../../components/CustomTabBar";
+import { RecipientProvider } from "../../context/RecipientContext";
 
 const TABS = [
   { name: "index", href: "/", Icon: SaveIcon },
@@ -18,20 +18,21 @@ const TABS = [
 
 export default function TabsLayout() {
   return (
-    <Tabs>
-      <View style={styles.root}>
-        <TabSlot />
-        <CustomTabBar tabs={[...TABS]} />
-      </View>
+    <RecipientProvider>
+      <Tabs>
+        <View style={styles.root}>
+          <TabSlot />
+        </View>
 
-      {/* Hidden TabList registers each route as a tab. The visible bar
-          is CustomTabBar above; this list is purely for the router. */}
-      <TabList style={styles.hiddenList}>
-        {TABS.map((tab) => (
-          <TabTrigger key={tab.name} name={tab.name} href={tab.href} />
-        ))}
-      </TabList>
-    </Tabs>
+        {/* Hidden TabList registers each route as a tab so router.push to
+            /money, /card, /search still works. No visible bar is rendered. */}
+        <TabList style={styles.hiddenList}>
+          {TABS.map((tab) => (
+            <TabTrigger key={tab.name} name={tab.name} href={tab.href} />
+          ))}
+        </TabList>
+      </Tabs>
+    </RecipientProvider>
   );
 }
 

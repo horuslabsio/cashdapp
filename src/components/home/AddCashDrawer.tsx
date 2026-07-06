@@ -295,8 +295,7 @@ export function AddCashDrawer({ visible, onClose, onSuccess }: Props) {
         <PaymentModal
           {...cr}
           styles={{
-            accentColor: "#01D651",
-            theme: "light",
+            theme: "seeker-d1d25ade",
           }}
           client={{
             logoUrl:
