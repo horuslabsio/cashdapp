@@ -174,3 +174,92 @@ export function WebsiteIcon({ width = 72, height = 72 }: IconProps) {
     </Svg>
   );
 }
+
+export function SubscriptionsIcon({ width = 72, height = 72 }: IconProps) {
+  return (
+    <Svg width={width} height={height} viewBox="0 0 82 82" fill="none">
+      <G clipPath="url(#clip-subscriptions)">
+        <Rect width="82" height="82" rx="16" fill="#BBEDE9" />
+        <G opacity="0.7">
+          <Rect
+            x="-70.75"
+            y="27.834"
+            width="117.627"
+            height="98.412"
+            transform="rotate(-52.1128 -70.75 27.834)"
+            fill="url(#paint-subscriptions)"
+          />
+        </G>
+        <G clipPath="url(#clip-subscriptions-inner)">
+          <Rect x="7" y="7" width="68" height="68" rx="16" fill="#BBEDE9" />
+          <G opacity="0.7">
+            <Rect
+              x="-70.75"
+              y="27.834"
+              width="117.627"
+              height="98.412"
+              transform="rotate(-52.1128 -70.75 27.834)"
+              fill="url(#paint-subscriptions-inner)"
+            />
+          </G>
+          <Path
+            d="M26.1436 35.7559C28.8429 30.4334 34.4255 25.2676 41.002 25.2676C49.4839 25.2676 55.7113 31.3681 56.7344 39.252"
+            stroke="black"
+            strokeWidth="4.94148"
+            strokeLinecap="round"
+          />
+          <Path
+            d="M55.8594 46.2441C53.4277 52.1013 47.8801 56.7324 41.001 56.7324C32.642 56.7324 26.2768 50.6319 25.2686 42.748"
+            stroke="black"
+            strokeWidth="4.94148"
+            strokeLinecap="round"
+          />
+          <Path
+            d="M25.2617 25.2676V34.707C25.2617 35.2863 25.7312 35.7559 26.3105 35.7559H35.75"
+            stroke="black"
+            strokeWidth="4.94148"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <Path
+            d="M46.2461 46.2441H55.6855C56.2648 46.2441 56.7344 46.7137 56.7344 47.293V56.7324"
+            stroke="black"
+            strokeWidth="4.94148"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </G>
+      </G>
+      <Defs>
+        <LinearGradient
+          id="paint-subscriptions"
+          x1="-20.5791"
+          y1="131.662"
+          x2="-11.3031"
+          y2="34.4823"
+          gradientUnits="userSpaceOnUse"
+        >
+          <Stop stopColor="white" />
+          <Stop offset="1" stopColor="white" stopOpacity="0" />
+        </LinearGradient>
+        <LinearGradient
+          id="paint-subscriptions-inner"
+          x1="-20.5791"
+          y1="131.662"
+          x2="-11.3031"
+          y2="34.4823"
+          gradientUnits="userSpaceOnUse"
+        >
+          <Stop stopColor="white" />
+          <Stop offset="1" stopColor="white" stopOpacity="0" />
+        </LinearGradient>
+        <ClipPath id="clip-subscriptions">
+          <Rect width="82" height="82" rx="16" fill="white" />
+        </ClipPath>
+        <ClipPath id="clip-subscriptions-inner">
+          <Rect x="7" y="7" width="68" height="68" rx="16" fill="white" />
+        </ClipPath>
+      </Defs>
+    </Svg>
+  );
+}

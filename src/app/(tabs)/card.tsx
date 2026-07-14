@@ -36,7 +36,7 @@ export default function CardScreen() {
     cr.open();
     try {
       const res = await fetch(
-        `https://chainrails-sdk-server-nu.vercel.app/session?amount=${amount}&destinationChain=${chain}&recipient=${destinationAddress}&token=USDC`,
+        `https://chainrails-sdk-server.vercel.app/test/create-session?amount=${amount}&destinationChain=${chain}&recipient=${destinationAddress}&token=USDC`,
       );
       const data = await res.json();
       cr.updateSession({
@@ -77,9 +77,7 @@ export default function CardScreen() {
 
       <PaymentModal
         {...cr}
-        styles={{
-          theme: "seeker-d1d25ade",
-        }}
+        env="internal"
         css={`
           & {
             --qr-color: #87afcd;

@@ -49,7 +49,7 @@ export default function MoneyScreen() {
     cr.open();
     try {
       const res = await fetch(
-        `https://chainrails-sdk-server-nu.vercel.app/session?amount=${amount}&destinationChain=${chain}&recipient=${destinationAddress}&token=USDC`,
+        `https://chainrails-sdk-server.vercel.app/test/create-session?amount=${amount}&destinationChain=${chain}&recipient=${destinationAddress}&token=USDC`,
       );
       const data = await res.json();
       cr.updateSession({
@@ -82,7 +82,7 @@ export default function MoneyScreen() {
             <Text style={styles.currencySymbol}>$</Text>
             <Text style={styles.integerAmount}>{integerPart}</Text>
             <Text style={styles.decimalAmount}>.{decimalPart}</Text>
-          </View>
+            </View>
 
           <View style={styles.changeContainer}>
             <Text style={styles.changePositive}>+ 12% ($277)</Text>
@@ -90,7 +90,6 @@ export default function MoneyScreen() {
             <Text style={styles.changeSubtext}>Last 30 days</Text>
           </View>
 
-          {/* Fund CTA — matches the mockup's single primary action */}
           <View style={styles.buttonRow}>
             <Text style={styles.fundButton} onPress={() => handleAction("fund")}>
               + Fund
@@ -102,9 +101,7 @@ export default function MoneyScreen() {
 
       <PaymentModal
         {...cr}
-        styles={{
-          theme: "seeker-d1d25ade",
-        }}
+        env="internal"
       />
     </DarkBackground>
   );
@@ -118,7 +115,7 @@ const styles = StyleSheet.create({
   dashboardFrame: {
     padding: 6.436,
     borderRadius: 17.163,
-    borderWidth: 1.334,
+    borderWidth: 1.333,
     borderColor: "#3D3D3D",
     backgroundColor: "#2F2F2F",
   },

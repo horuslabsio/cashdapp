@@ -8,6 +8,7 @@ type Props = {
   icon: React.ReactNode;
   onPress?: () => void;
   accessibilityLabel?: string;
+  disabled?: boolean;
 };
 
 /**
@@ -15,17 +16,32 @@ type Props = {
  * a self-contained SVG (background + foreground baked in), so the tile
  * itself is just a touch target with a label underneath.
  */
-export function DemoTile({ label, icon, onPress, accessibilityLabel }: Props) {
+export function DemoTile({
+  label,
+  icon,
+  onPress,
+  accessibilityLabel,
+  disabled = false,
+}: Props) {
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel ?? label}
+      accessibilityState={{ disabled }}
       onPress={onPress}
-      style={({ pressed }) => [styles.touch, pressed && styles.pressed]}
+      disabled={disabled}
+      style={({ pressed }) => [
+        styles.touch,
+        disabled && styles.disabled,
+        !disabled && pressed && styles.pressed,
+      ]}
       hitSlop={6}
     >
       <View style={styles.iconWrap}>{icon}</View>
-      <Text style={styles.label} numberOfLines={1}>
+      <Text
+        style={[styles.label, disabled && styles.disabledLabel]}
+        numberOfLines={1}
+      >
         {label}
       </Text>
     </Pressable>
@@ -41,6 +57,12 @@ const styles = StyleSheet.create({
   pressed: {
     opacity: 0.75,
     transform: [{ scale: 0.97 }],
+  },
+  disabled: {
+    opacity: 0.35,
+  },
+  disabledLabel: {
+    color: "#8A8A8A",
   },
   iconWrap: {
     width: 76,

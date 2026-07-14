@@ -21,7 +21,12 @@ export default function TabsLayout() {
     <RecipientProvider>
       <Tabs>
         <View style={styles.root}>
-          <TabSlot />
+          {/* Keep inactive tabs mounted so local component state (e.g. the
+              "Customize Recipient Details" CollapsibleSection) is preserved
+              when navigating to /card, /money, /search and back. Without
+              this, the home tab is detached and re-initialized on focus,
+              which causes the recipient section to flicker up/down. */}
+          <TabSlot detachInactiveScreens={false} />
         </View>
 
         {/* Hidden TabList registers each route as a tab so router.push to

@@ -11,6 +11,7 @@ import {
   ChainFiIcon,
   RailPredictIcon,
   WebsiteIcon,
+  SubscriptionsIcon,
 } from "../../components/home/DemoIcons";
 import { DemoTile } from "../../components/home/DemoTile";
 
@@ -45,7 +46,7 @@ export default function HomeScreen() {
         <View style={styles.descriptionBlock}>
           <Text style={styles.descriptionText}>
             Chainrails helps applications accept deposits, process withdrawals, and move value across
-            crypto and fiat without
+            crypto and fiat without dealing with bridges, swaps, or payment providers.
           </Text>
           <Text style={styles.descriptionText}>
             Instead of building separate integrations for multiple chains, onramps, offramps, and
@@ -80,14 +81,23 @@ export default function HomeScreen() {
               onPress={() => router.push("/search")}
             />
             <DemoTile
+              label="Subscriptions"
+              icon={<SubscriptionsIcon width={72} height={72} />}
+              onPress={() => {}}
+              disabled
+            />
+            {/*<DemoTile
               label="Website"
               icon={<WebsiteIcon width={76} height={76} />}
               onPress={() => Linking.openURL("https://chainrails.io/")}
-            />
+            />*/}
           </View>
         </View>
 
-        {/* Customize Recipient Details — anchored to the bottom */}
+        {/* Customize Recipient Details — below the demos. With the
+            scroll-driven layout fix in `CollapsibleSection` (no more
+            `LinearTransition` on the root), the demos row no longer
+            jumps when this section is opened or closed. */}
         <View style={styles.section}>
           <CollapsibleSection title="Customize Recipient Details">
             <RecipientDetailsForm />
@@ -114,10 +124,10 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     fontFamily: FONT_REG,
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: "400",
     color: "#FFFFFF",
-    lineHeight: 26,
+    lineHeight: 22,
     letterSpacing: -0.2,
     marginBottom: 16,
   },

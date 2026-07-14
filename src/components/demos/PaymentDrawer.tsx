@@ -85,7 +85,7 @@ export function PaymentDrawer({
     cr.open();
     try {
       const res = await fetch(
-        `https://chainrails-sdk-server-nu.vercel.app/session?amount=${amount}&destinationChain=${chain}&recipient=${destinationAddress}&token=USDC`,
+        `https://chainrails-sdk-server.vercel.app/test/create-session?amount=${amount}&destinationChain=${chain}&recipient=${destinationAddress}&token=USDC`,
       );
       const data = await res.json();
       cr.updateSession({
@@ -216,6 +216,7 @@ export function PaymentDrawer({
 
         <PaymentModal
           {...cr}
+          env="internal"
           styles={{
             theme,
           }}

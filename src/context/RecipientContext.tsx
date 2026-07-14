@@ -18,7 +18,7 @@ export type RecipientDetails = {
 };
 
 const DEFAULTS: RecipientDetails = {
-  address: "0xb25aa807118aa401896826147a6ecdaae91f2f90",
+  address: "4xdL1LGGHhMpT2AvQHpPV7vzkvnPPwbQ3csQoT9Cewjk",
   chain: "SOLANA",
   amount: 1,
 };

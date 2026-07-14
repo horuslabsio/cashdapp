@@ -121,7 +121,7 @@ The app uses a demo server to create payment sessions:
 
 ```typescript
 const res = await fetch(
-  `https://chainrails-sdk-server-nu.vercel.app/session?amount=${amount}&destinationChain=${chain}&recipient=${recipient}&token=USDC`,
+  `https://chainrails-sdk-server.vercel.app/test/create-session?amount=${amount}&destinationChain=${chain}&recipient=${recipient}&token=USDC`,
 );
 const data = await res.json();
 cr.updateSession({
@@ -161,8 +161,8 @@ All demos default to **Solana** for the destination chain, targeting Solana user
 ## App Configuration
 
 App configuration is in `app.json`:
-- Package name: `com.nova.mobile`
-- iOS bundle identifier: `com.nova.mobile`
+- Package name: `com.chainrails.playground`
+- iOS bundle identifier: `com.chainrails.playground`
 - App name: `Chainrails Playground`
 
 ## License

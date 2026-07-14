@@ -1,16 +1,10 @@
 import * as React from "react";
-import { LayoutAnimation, Platform, Pressable, StyleSheet, Text, UIManager, View } from "react-native";
+import { Pressable, StyleSheet, Text } from "react-native";
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import Svg, { Path } from "react-native-svg";
 
 const FONT_REG = "Figtree";
 const FONT_SEMI = "Figtree SemiBold";
-
-if (
-  Platform.OS === "android" &&
-  UIManager.setLayoutAnimationEnabledExperimental
-) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
-}
 
 type Props = {
   title: string;
@@ -20,21 +14,28 @@ type Props = {
   defaultOpen?: boolean;
 };
 
+const ENTERING = FadeIn.duration(300);
+const EXITING = FadeOut.duration(300);
+
 /**
  * Simple tappable row with a title and a chevron that flips on press.
- * Uses `LayoutAnimation` for a smooth height transition so we don't need
- * a measurement-based animation. Renders `children` inline when open.
+ *
+ * The body fades in/out via Reanimated 4 entering/exiting animations. We
+ * deliberately do NOT use `LinearTransition` on the root: inside a
+ * `ScrollView` the layout pass is driven by the final measured size of
+ * siblings (e.g. the "Featured Demos" row), so animating our own height
+ * while the siblings re-position instantly causes the demos to jump
+ * whenever the section is opened or closed.
  */
 export function CollapsibleSection({ title, children, defaultOpen = false }: Props) {
   const [open, setOpen] = React.useState(defaultOpen);
 
   const handlePress = React.useCallback(() => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setOpen((prev) => !prev);
   }, []);
 
   return (
-    <View style={styles.root}>
+    <Animated.View style={styles.root}>
       <Pressable
         accessibilityRole="button"
         accessibilityState={{ expanded: open }}
@@ -51,8 +52,16 @@ export function CollapsibleSection({ title, children, defaultOpen = false }: Pro
         />
       </Pressable>
 
-      {open && <View style={styles.body}>{children}</View>}
-    </View>
+      {open && (
+        <Animated.View
+          style={styles.body}
+          entering={ENTERING}
+          exiting={EXITING}
+        >
+          {children}
+        </Animated.View>
+      )}
+    </Animated.View>
   );
 }
 
