@@ -66,14 +66,14 @@ export default function HomeScreen() {
 
           <View style={styles.tilesRow}>
             <DemoTile
-              label="GameRails"
-              icon={<GameRailsIcon width={72} height={72} />}
-              onPress={() => router.push("/card")}
-            />
-            <DemoTile
               label="ChainFi"
               icon={<ChainFiIcon width={72} height={72} />}
               onPress={() => router.push("/money")}
+            />
+            <DemoTile
+              label="GameRails"
+              icon={<GameRailsIcon width={72} height={72} />}
+              onPress={() => router.push("/card")}
             />
             <DemoTile
               label="RailPredict"
