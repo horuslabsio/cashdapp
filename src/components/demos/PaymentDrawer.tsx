@@ -1,16 +1,6 @@
 import * as React from "react";
-import {
-  Modal,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
 import { usePaymentModal, PaymentModal } from "@chainrails/react-native";
@@ -85,7 +75,7 @@ export function PaymentDrawer({
     cr.open();
     try {
       const res = await fetch(
-        `https://chainrails-sdk-server.vercel.app/test/create-session?amount=${amount}&destinationChain=${chain}&recipient=${destinationAddress}&token=USDC`,
+        `https://chainrails-sdk-server-nu.vercel.app/session?amount=${amount}&destinationChain=${chain}&recipient=${destinationAddress}&token=USDC`,
       );
       const data = await res.json();
       cr.updateSession({
@@ -136,11 +126,7 @@ export function PaymentDrawer({
         </Animated.View>
 
         <Animated.View
-          style={[
-            styles.sheetContainer,
-            { backgroundColor, paddingBottom: Math.max(insets.bottom, 16) },
-            sheetStyle,
-          ]}
+          style={[styles.sheetContainer, { backgroundColor, paddingBottom: Math.max(insets.bottom, 16) }, sheetStyle]}
         >
           <View style={styles.handle} />
 
@@ -154,46 +140,27 @@ export function PaymentDrawer({
               style={styles.closeButton}
             >
               <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
-                <Path
-                  d="M18 6L6 18M6 6L18 18"
-                  stroke={textColor}
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                <Path d="M18 6L6 18M6 6L18 18" stroke={textColor} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
               </Svg>
             </Pressable>
           </View>
 
           <View style={styles.content}>
             <View style={styles.amountContainer}>
-              <Text style={[styles.amountLabel, { color: secondaryTextColor }]}>
-                Amount
-              </Text>
-              <Text style={[styles.amountValue, { color: accentColor }]}>
-                ${amount.toFixed(2)}
-              </Text>
+              <Text style={[styles.amountLabel, { color: secondaryTextColor }]}>Amount</Text>
+              <Text style={[styles.amountValue, { color: accentColor }]}>${amount.toFixed(2)}</Text>
             </View>
 
             <View style={styles.detailRow}>
-              <Text style={[styles.detailLabel, { color: secondaryTextColor }]}>
-                To
-              </Text>
-              <Text
-                style={[styles.detailValue, { color: textColor }]}
-                numberOfLines={1}
-              >
+              <Text style={[styles.detailLabel, { color: secondaryTextColor }]}>To</Text>
+              <Text style={[styles.detailValue, { color: textColor }]} numberOfLines={1}>
                 {destinationAddress.slice(0, 6)}...{destinationAddress.slice(-4)}
               </Text>
             </View>
 
             <View style={styles.detailRow}>
-              <Text style={[styles.detailLabel, { color: secondaryTextColor }]}>
-                Network
-              </Text>
-              <Text style={[styles.detailValue, { color: textColor }]}>
-                {chain.toLowerCase()}
-              </Text>
+              <Text style={[styles.detailLabel, { color: secondaryTextColor }]}>Network</Text>
+              <Text style={[styles.detailValue, { color: textColor }]}>{chain.toLowerCase()}</Text>
             </View>
 
             <View style={styles.buttonContainer}>
@@ -206,9 +173,7 @@ export function PaymentDrawer({
                 onPress={handleChainRailsPayment}
                 disabled={crLoading}
               >
-                <Text style={styles.submitButtonText}>
-                  {crLoading ? "Processing..." : "Pay Now"}
-                </Text>
+                <Text style={styles.submitButtonText}>{crLoading ? "Processing..." : "Pay Now"}</Text>
               </Pressable>
             </View>
           </View>
@@ -216,7 +181,6 @@ export function PaymentDrawer({
 
         <PaymentModal
           {...cr}
-          env="internal"
           styles={{
             theme,
           }}

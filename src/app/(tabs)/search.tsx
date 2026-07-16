@@ -43,7 +43,7 @@ export default function SearchScreen() {
     cr.open();
     try {
       const res = await fetch(
-        `https://chainrails-sdk-server.vercel.app/test/create-session?amount=${amount}&destinationChain=${chain}&recipient=${destinationAddress}&token=USDC`,
+        `https://chainrails-sdk-server-nu.vercel.app/session?amount=${amount}&destinationChain=${chain}&recipient=${destinationAddress}&token=USDC`,
       );
       const data = await res.json();
       cr.updateSession({
@@ -61,68 +61,60 @@ export default function SearchScreen() {
       <DarkHeader />
 
       <ScrollView
-        contentContainerStyle={[
-          styles.scrollContent,
-          { paddingBottom: insets.bottom + 24 },
-        ]}
+        contentContainerStyle={[styles.scrollContent, { paddingBottom: insets.bottom + 24 }]}
         showsVerticalScrollIndicator={false}
       >
         {/* Prediction Card */}
         <View style={styles.predictionFrame}>
           <View style={styles.predictionCard}>
-          <View style={styles.matchInfo}>
-            <View style={styles.teamBadge}>
-              <Text style={styles.teamEmoji}>⚽</Text>
+            <View style={styles.matchInfo}>
+              <View style={styles.teamBadge}>
+                <Text style={styles.teamEmoji}>⚽</Text>
+              </View>
+              <View style={styles.matchText}>
+                <Text style={styles.matchTitle}>Will Bayern win a corner in the next 3 minutes?</Text>
+              </View>
             </View>
-            <View style={styles.matchText}>
-              <Text style={styles.matchTitle}>
-                Will Bayern win a corner in the next 3 minutes?
-              </Text>
-            </View>
-          </View>
 
-          {/* Vote Results */}
-          <View style={styles.resultsContainer}>
-            <View style={styles.resultItem}>
-              <Text style={styles.resultLabel}>Voted Yes</Text>
-              <Text style={styles.resultValueYes}>{yesPercentage}%</Text>
+            {/* Vote Results */}
+            <View style={styles.resultsContainer}>
+              <View style={styles.resultItem}>
+                <Text style={styles.resultLabel}>Voted Yes</Text>
+                <Text style={styles.resultValueYes}>{yesPercentage}%</Text>
+              </View>
+              <View style={styles.resultItem}>
+                <Text style={[styles.resultLabel, styles.resultLabelEnd]}>Voted No</Text>
+                <Text style={styles.resultValueNo}>{noPercentage}%</Text>
+              </View>
             </View>
-            <View style={styles.resultItem}>
-              <Text style={[styles.resultLabel, styles.resultLabelEnd]}>Voted No</Text>
-              <Text style={styles.resultValueNo}>{noPercentage}%</Text>
-            </View>
-          </View>
 
-          {/* Progress Bar */}
-          <View style={styles.progressBarContainer}>
-            <View style={styles.progressBar}>
-              <View style={[styles.progressYes, { width: `${yesPercentage}%` }]} />
+            {/* Progress Bar */}
+            <View style={styles.progressBarContainer}>
+              <View style={styles.progressBar}>
+                <View style={[styles.progressYes, { width: `${yesPercentage}%` }]} />
+              </View>
             </View>
-          </View>
 
-          {/* Vote Buttons */}
-          <View style={styles.voteButtons}>
-            <Pressable
-              style={({ pressed }) => [styles.voteButton, styles.voteYesButton, pressed && styles.buttonPressed]}
-              onPress={() => handleVote("yes")}
-            >
-              <Text style={styles.voteButtonText}>Vote 'YES'</Text>
-            </Pressable>
-            <Pressable
-              style={({ pressed }) => [styles.voteButton, styles.voteNoButton, pressed && styles.buttonPressed]}
-              onPress={() => handleVote("no")}
-            >
-              <Text style={styles.voteButtonText}>Vote 'NO'</Text>
-            </Pressable>
+            {/* Vote Buttons */}
+            <View style={styles.voteButtons}>
+              <Pressable
+                style={({ pressed }) => [styles.voteButton, styles.voteYesButton, pressed && styles.buttonPressed]}
+                onPress={() => handleVote("yes")}
+              >
+                <Text style={styles.voteButtonText}>Vote 'YES'</Text>
+              </Pressable>
+              <Pressable
+                style={({ pressed }) => [styles.voteButton, styles.voteNoButton, pressed && styles.buttonPressed]}
+                onPress={() => handleVote("no")}
+              >
+                <Text style={styles.voteButtonText}>Vote 'NO'</Text>
+              </Pressable>
+            </View>
           </View>
         </View>
-          </View>
       </ScrollView>
 
-      <PaymentModal
-        {...cr}
-        env="internal"
-      />
+      <PaymentModal {...cr} />
     </DarkBackground>
   );
 }

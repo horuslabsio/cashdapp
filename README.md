@@ -121,7 +121,7 @@ The app uses a demo server to create payment sessions:
 
 ```typescript
 const res = await fetch(
-  `https://chainrails-sdk-server.vercel.app/test/create-session?amount=${amount}&destinationChain=${chain}&recipient=${recipient}&token=USDC`,
+  `https://chainrails-sdk-server-nu.vercel.app/session?amount=${amount}&destinationChain=${chain}&recipient=${recipient}&token=USDC`,
 );
 const data = await res.json();
 cr.updateSession({

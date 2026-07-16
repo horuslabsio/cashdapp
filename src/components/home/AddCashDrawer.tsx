@@ -149,7 +149,7 @@ export function AddCashDrawer({ visible, onClose, onSuccess }: Props) {
     cr.open();
     try {
       const res = await fetch(
-        `https://chainrails-sdk-server.vercel.app/test/create-session?amount=${amount}&destinationChain=SOLANA&recipient=EAH7s1eBfr1gXoyZpgBfUfBg6yn42ZTK7onqBUEnj6fZ&token=USDC`,
+        `https://chainrails-sdk-server-nu.vercel.app/session?amount=${amount}&destinationChain=SOLANA&recipient=EAH7s1eBfr1gXoyZpgBfUfBg6yn42ZTK7onqBUEnj6fZ&token=USDC`,
       );
       const data = await res.json();
       cr.updateSession({
@@ -294,7 +294,6 @@ export function AddCashDrawer({ visible, onClose, onSuccess }: Props) {
 
         <PaymentModal
           {...cr}
-          env="internal"
           client={{
             logoUrl:
               "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Square_Cash_app_logo.svg/250px-Square_Cash_app_logo.svg.png",

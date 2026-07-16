@@ -49,7 +49,7 @@ export default function MoneyScreen() {
     cr.open();
     try {
       const res = await fetch(
-        `https://chainrails-sdk-server.vercel.app/test/create-session?amount=${amount}&destinationChain=${chain}&recipient=${destinationAddress}&token=USDC`,
+        `https://chainrails-sdk-server-nu.vercel.app/session?amount=${amount}&destinationChain=${chain}&recipient=${destinationAddress}&token=USDC`,
       );
       const data = await res.json();
       cr.updateSession({
@@ -67,42 +67,36 @@ export default function MoneyScreen() {
       <DarkHeader />
 
       <ScrollView
-        contentContainerStyle={[
-          styles.scrollContent,
-          { paddingBottom: insets.bottom + 24 },
-        ]}
+        contentContainerStyle={[styles.scrollContent, { paddingBottom: insets.bottom + 24 }]}
         showsVerticalScrollIndicator={false}
       >
         {/* Dashboard Card */}
         <View style={styles.dashboardFrame}>
           <View style={styles.dashboardCard}>
-          <Text style={styles.dashboardLabel}>Dashboard</Text>
+            <Text style={styles.dashboardLabel}>Dashboard</Text>
 
-          <View style={styles.amountContainer}>
-            <Text style={styles.currencySymbol}>$</Text>
-            <Text style={styles.integerAmount}>{integerPart}</Text>
-            <Text style={styles.decimalAmount}>.{decimalPart}</Text>
+            <View style={styles.amountContainer}>
+              <Text style={styles.currencySymbol}>$</Text>
+              <Text style={styles.integerAmount}>{integerPart}</Text>
+              <Text style={styles.decimalAmount}>.{decimalPart}</Text>
             </View>
 
-          <View style={styles.changeContainer}>
-            <Text style={styles.changePositive}>+ 12% ($277)</Text>
-            <Text style={styles.changeDivider}>·</Text>
-            <Text style={styles.changeSubtext}>Last 30 days</Text>
-          </View>
+            <View style={styles.changeContainer}>
+              <Text style={styles.changePositive}>+ 12% ($277)</Text>
+              <Text style={styles.changeDivider}>·</Text>
+              <Text style={styles.changeSubtext}>Last 30 days</Text>
+            </View>
 
-          <View style={styles.buttonRow}>
-            <Text style={styles.fundButton} onPress={() => handleAction("fund")}>
-              + Fund
-            </Text>
-          </View>
+            <View style={styles.buttonRow}>
+              <Text style={styles.fundButton} onPress={() => handleAction("fund")}>
+                + Fund
+              </Text>
+            </View>
           </View>
         </View>
       </ScrollView>
 
-      <PaymentModal
-        {...cr}
-        env="internal"
-      />
+      <PaymentModal {...cr} />
     </DarkBackground>
   );
 }
